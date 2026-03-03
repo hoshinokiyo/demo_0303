@@ -61,15 +61,16 @@
             <table class="table table-striped table-hover mb-0">
                 <thead class="table-dark">
                 <tr>
-                    <th scope="col" class="text-center" style="width: 120px;">&#12383;&#12435;&#12392;&#12358;</th>
-                    <th scope="col">&#12424;&#12390;&#12356;</th>
+                    <th scope="col" class="text-center" style="width: 120px;">&#25285;&#24403;</th>
+                    <th scope="col">&#20104;&#23450;</th>
                     <th scope="col" style="width: 160px;">&#12391;&#12365;&#12383;&#65311;</th>
-                    <th scope="col" class="text-center" style="width: 220px;">&#12381;&#12358;&#12373;</th>
+                    <th scope="col" class="text-center" style="width: 220px;">&#25805;&#20316;</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="todo : ${todos}">
-                    <td class="text-center" th:text="${todo.currentUser}">&#27597;</td>
+                    <td class="text-center"
+                        th:text="${todo.currentUser == 'mom' ? '母' : (todo.currentUser == 'dad' ? '父' : (todo.currentUser == 'me' ? '僕' : (todo.currentUser == 'sis' ? '姉' : todo.currentUser)))}">&#27597;</td>
                     <td>
                         <span th:classappend="${todo.completed} ? 'text-decoration-line-through text-muted' : ''"
                               th:text="${todo.title}">Sample todo</span>
@@ -83,7 +84,7 @@
                                     &#12391;&#12365;&#12383;
                                 </button>
                             </form>
-                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#12363;&#12360;&#12427;</a>
+                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#22793;&#12360;&#12427;</a>
                             <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="m-0"
                                   onsubmit="return confirm('&#12411;&#12435;&#12392;&#12358;&#12395;&#12420;&#12417;&#12427;&#65311;');">
                                 <button type="submit" class="btn btn-danger btn-sm">&#12420;&#12417;&#12427;</button>
