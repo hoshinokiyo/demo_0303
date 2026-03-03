@@ -27,4 +27,8 @@ public class TodoService {
                 .build();
         return todoMapper.insert(todo);
     }
+
+    public int deleteById(Long id) {
+        return todoMapper.deleteById(id);
+    }
 }
