@@ -6,6 +6,28 @@
     <title>ToDo List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .todo-row-mom > td {
+            background-color: #fce4f3 !important;
+        }
+
+        .todo-row-dad > td {
+            background-color: #e6f2ff !important;
+        }
+
+        .todo-row-me > td {
+            background-color: #fff8cc !important;
+            color: #111111 !important;
+        }
+
+        .todo-row-sis > td {
+            background-color: #f1e6ff !important;
+        }
+
+        .owner-cell {
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body class="bg-light">
 <div class="container py-4">
@@ -68,8 +90,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="todo : ${todos}">
-                    <td class="text-center" th:switch="${todo.currentUser}">
+                <tr th:each="todo : ${todos}"
+                    th:classappend="${todo.currentUser == '母' or todo.currentUser == 'mom'} ? ' todo-row-mom' :
+                                    (${todo.currentUser == '父' or todo.currentUser == 'dad'} ? ' todo-row-dad' :
+                                    (${todo.currentUser == '僕' or todo.currentUser == 'me'} ? ' todo-row-me' :
+                                    (${todo.currentUser == '姉' or todo.currentUser == 'sis' or todo.currentUser == '娱'} ? ' todo-row-sis' : '')))">
+                    <td class="text-center owner-cell" th:switch="${todo.currentUser}">
                         <span th:case="'mom'">&#27597;</span>
                         <span th:case="'dad'">&#29238;</span>
                         <span th:case="'me'">&#20693;</span>
