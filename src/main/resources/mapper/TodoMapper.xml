@@ -5,26 +5,34 @@
 <mapper namespace="com.example.demo.mapper.TodoMapper">
 
     <select id="findAll" resultType="Todo">
-        SELECT id, title, completed
+        SELECT id, title, completed, owner_name AS current_user
         FROM todos
         ORDER BY id
     </select>
 
+    <select id="findAllByCurrentUser" parameterType="string" resultType="Todo">
+        SELECT id, title, completed, owner_name AS current_user
+        FROM todos
+        WHERE owner_name = #{currentUser}
+        ORDER BY id
+    </select>
+
     <select id="findById" parameterType="long" resultType="Todo">
-        SELECT id, title, completed
+        SELECT id, title, completed, owner_name AS current_user
         FROM todos
         WHERE id = #{id}
     </select>
 
     <insert id="insert" parameterType="Todo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO todos (title, completed)
-        VALUES (#{title}, #{completed})
+        INSERT INTO todos (title, completed, owner_name)
+        VALUES (#{title}, #{completed}, #{currentUser})
     </insert>
 
     <update id="update" parameterType="Todo">
         UPDATE todos
         SET title = #{title},
-            completed = #{completed}
+            completed = #{completed},
+            owner_name = #{currentUser}
         WHERE id = #{id}
     </update>
 

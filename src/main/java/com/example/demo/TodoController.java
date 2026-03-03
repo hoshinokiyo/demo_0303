@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
+
 import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
 
@@ -25,14 +27,46 @@ public class TodoController {
     }
 
     @GetMapping
-    public String list(Model model) {
-        List<Todo> todoList = todoService.findAll();
+    public String list(Model model, HttpSession session) {
+        String currentUser = (String) session.getAttribute("currentUser");
+        if (currentUser == null || currentUser.isBlank()) {
+            return "todo/select-user";
+        }
+        List<Todo> todoList = todoService.findAllByCurrentUser(currentUser);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("todos", todoList);
         return "todo/list";
     }
 
+    @PostMapping("/select-user")
+    public String selectUser(@RequestParam(value = "currentUser", required = false) String currentUser,
+                             HttpSession session,
+                             RedirectAttributes redirectAttributes) {
+        if (currentUser == null || currentUser.isBlank()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "\u3060\u308c\u304c\u3064\u304b\u3046\u304b\u3048\u3089\u3093\u3067\u306d");
+            return "redirect:/todo/select-user";
+        }
+        session.setAttribute("currentUser", currentUser);
+        return "redirect:/todo/new";
+    }
+
+    @GetMapping("/select-user")
+    public String selectUserPage() {
+        return "todo/select-user";
+    }
+
+    @PostMapping("/change-user")
+    public String changeUser(HttpSession session) {
+        session.removeAttribute("currentUser");
+        return "redirect:/todo";
+    }
+
     @GetMapping("/new")
-    public String newTodo() {
+    public String newTodo(HttpSession session) {
+        String currentUser = (String) session.getAttribute("currentUser");
+        if (currentUser == null || currentUser.isBlank()) {
+            return "redirect:/todo";
+        }
         return "todo/form";
     }
 
@@ -54,8 +88,12 @@ public class TodoController {
     }
 
     @PostMapping("/complete")
-    public String complete(@RequestParam("title") String title) {
-        todoService.createTodo(title);
+    public String complete(@RequestParam("title") String title, HttpSession session) {
+        String currentUser = (String) session.getAttribute("currentUser");
+        if (currentUser == null || currentUser.isBlank()) {
+            return "redirect:/todo";
+        }
+        todoService.createTodo(title, currentUser);
         return "redirect:/todo";
     }
 

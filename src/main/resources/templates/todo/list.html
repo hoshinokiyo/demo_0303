@@ -19,8 +19,16 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3 mb-0">ToDo List</h1>
-        <a th:href="@{/todo/new}" class="btn btn-primary">&#26032;&#35215;&#30331;&#37682;</a>
+        <div>
+            <h1 class="h3 mb-1">ToDo List</h1>
+            <span class="badge text-bg-secondary" th:text="'Current User: ' + ${currentUser}">Current User: Mother</span>
+        </div>
+        <div class="d-flex gap-2">
+            <form th:action="@{/todo/change-user}" method="post" class="m-0">
+                <button type="submit" class="btn btn-outline-secondary">Switch User</button>
+            </form>
+            <a th:href="@{/todo/new}" class="btn btn-primary">&#26032;&#35215;&#30331;&#37682;</a>
+        </div>
     </div>
 
     <div class="card shadow-sm" th:if="${#lists.isEmpty(todos)}">

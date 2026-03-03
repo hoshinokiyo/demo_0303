@@ -20,14 +20,19 @@ public class TodoService {
         return todoMapper.findAll();
     }
 
+    public List<Todo> findAllByCurrentUser(String currentUser) {
+        return todoMapper.findAllByCurrentUser(currentUser);
+    }
+
     public Todo findById(Long id) {
         return todoMapper.findById(id);
     }
 
-    public int createTodo(String title) {
+    public int createTodo(String title, String currentUser) {
         Todo todo = Todo.builder()
                 .title(title)
                 .completed(false)
+                .currentUser(currentUser)
                 .build();
         return todoMapper.insert(todo);
     }
@@ -41,6 +46,7 @@ public class TodoService {
                 .id(id)
                 .title(title)
                 .completed(existing.getCompleted())
+                .currentUser(existing.getCurrentUser())
                 .build();
         return todoMapper.update(todo);
     }
@@ -54,6 +60,7 @@ public class TodoService {
                 .id(existing.getId())
                 .title(existing.getTitle())
                 .completed(!Boolean.TRUE.equals(existing.getCompleted()))
+                .currentUser(existing.getCurrentUser())
                 .build();
         return todoMapper.update(todo);
     }
