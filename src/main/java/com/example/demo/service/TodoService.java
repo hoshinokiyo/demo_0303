@@ -20,6 +20,10 @@ public class TodoService {
         return todoMapper.findAll();
     }
 
+    public Todo findById(Long id) {
+        return todoMapper.findById(id);
+    }
+
     public int createTodo(String title) {
         Todo todo = Todo.builder()
                 .title(title)

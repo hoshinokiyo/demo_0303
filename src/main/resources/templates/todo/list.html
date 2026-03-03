@@ -39,7 +39,7 @@
                     <th scope="col" class="text-center" style="width: 80px;">ID</th>
                     <th scope="col">Title</th>
                     <th scope="col" style="width: 160px;">Completed</th>
-                    <th scope="col" class="text-center" style="width: 120px;">Action</th>
+                    <th scope="col" class="text-center" style="width: 180px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,10 +48,13 @@
                     <td th:text="${todo.title}">Sample todo</td>
                     <td th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
                     <td class="text-center">
-                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="m-0"
-                              onsubmit="return confirm('&#26412;&#24403;&#12395;&#21066;&#38500;&#12375;&#12414;&#12377;&#12363;&#65311;');">
-                            <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
-                        </form>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#32232;&#38598;</a>
+                            <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="m-0"
+                                  onsubmit="return confirm('&#26412;&#24403;&#12395;&#21066;&#38500;&#12375;&#12414;&#12377;&#12363;&#65311;');">
+                                <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
