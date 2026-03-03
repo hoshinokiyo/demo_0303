@@ -39,7 +39,8 @@
                     <td th:text="${todo.title}">Sample todo</td>
                     <td th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
                     <td class="text-center">
-                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="m-0">
+                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="m-0"
+                              onsubmit="return confirm('&#26412;&#24403;&#12395;&#21066;&#38500;&#12375;&#12414;&#12377;&#12363;&#65311;');">
                             <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
                         </form>
                     </td>
