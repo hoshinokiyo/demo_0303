@@ -30,22 +30,21 @@
             <h2 class="h6 mb-3">&#12384;&#12428;&#12398;&#12424;&#12390;&#12356;&#12434;&#12356;&#12428;&#12427;&#65311;</h2>
             <form th:action="@{/todo/new}" method="get" class="d-flex flex-wrap align-items-center gap-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="owner" id="ownerMother" value="&#27597;" required>
+                    <input class="form-check-input" type="radio" name="owner" id="ownerMother" value="mom" onchange="this.form.submit()">
                     <label class="form-check-label" for="ownerMother">&#27597;</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="owner" id="ownerFather" value="&#29238;">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerFather" value="dad" onchange="this.form.submit()">
                     <label class="form-check-label" for="ownerFather">&#29238;</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="owner" id="ownerMe" value="&#20693;">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerMe" value="me" onchange="this.form.submit()">
                     <label class="form-check-label" for="ownerMe">&#20693;</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="owner" id="ownerSister" value="&#23089;">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerSister" value="sis" onchange="this.form.submit()">
                     <label class="form-check-label" for="ownerSister">&#23089;</label>
                 </div>
-                <button type="submit" class="btn btn-primary">&#12424;&#12390;&#12356;&#12434;&#12356;&#12428;&#12427;</button>
             </form>
         </div>
     </div>
@@ -54,7 +53,6 @@
         <div class="card-body text-center py-5">
             <h2 class="h5 mb-3">&#84;&#111;&#68;&#111;&#12364;&#12414;&#12384;&#30331;&#37682;&#12373;&#12428;&#12390;&#12356;&#12414;&#12379;&#12435;</h2>
             <p class="text-muted mb-4">&#26368;&#21021;&#12398;&#84;&#111;&#68;&#111;&#12434;&#20316;&#25104;&#12375;&#12390;&#12289;&#12479;&#12473;&#12463;&#31649;&#29702;&#12434;&#22987;&#12417;&#12414;&#12375;&#12423;&#12358;&#12290;</p>
-            <a th:href="@{/todo/new}" class="btn btn-primary btn-lg">&#26032;&#35215;&#20316;&#25104;</a>
         </div>
     </div>
 

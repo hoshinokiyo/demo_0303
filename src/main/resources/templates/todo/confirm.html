@@ -9,21 +9,21 @@
 </head>
 <body class="bg-light">
 <div class="container py-4" style="max-width: 720px;">
-    <h1 class="h3 mb-4">&#30331;&#37682;&#20869;&#23481;&#12398;&#30906;&#35469;</h1>
+    <h1 class="h3 mb-4">&#20869;&#23481;&#30906;&#35469;</h1>
 
     <div class="card shadow-sm">
         <div class="card-body">
             <form th:action="@{/todo/complete}" method="post">
                 <div class="mb-3">
-                    <label for="titleDisplay" class="form-label">Title</label>
+                    <label for="titleDisplay" class="form-label">&#12424;&#12390;&#12356;</label>
                     <input type="text" id="titleDisplay" class="form-control" th:value="${title}" readonly>
                 </div>
 
                 <input type="hidden" name="title" th:value="${title}">
 
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">&#30331;&#37682;</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">&#25147;&#12427;</button>
+                    <button type="submit" class="btn btn-primary">&#12399;&#12356;</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">&#12356;&#12356;&#12360;</button>
                 </div>
             </form>
         </div>

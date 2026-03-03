@@ -62,7 +62,10 @@ public class TodoController {
                           HttpSession session,
                           Model model) {
         if (owner != null && !owner.isBlank()) {
-            session.setAttribute("currentUser", owner);
+            String mappedOwner = ownerCodeToName(owner);
+            if (mappedOwner != null) {
+                session.setAttribute("currentUser", mappedOwner);
+            }
         }
         String currentUser = (String) session.getAttribute("currentUser");
         if (currentUser == null || currentUser.isBlank()) {
@@ -127,5 +130,15 @@ public class TodoController {
             redirectAttributes.addFlashAttribute("errorMessage", "\u524a\u9664\u306b\u5931\u6557\u3057\u307e\u3057\u305f");
         }
         return "redirect:/todo";
+    }
+
+    private String ownerCodeToName(String ownerCode) {
+        return switch (ownerCode) {
+            case "mom", "\u6bcd" -> "\u6bcd";
+            case "dad", "\u7236" -> "\u7236";
+            case "me", "\u50d5" -> "\u50d5";
+            case "sis", "\u59c9" -> "\u59c9";
+            default -> null;
+        };
     }
 }
