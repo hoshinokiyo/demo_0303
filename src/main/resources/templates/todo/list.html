@@ -32,6 +32,18 @@
         .owner-cell {
             font-weight: 700;
         }
+
+        .completed-row > td {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.38);
+        }
+
+        .completed-row > td:not(:last-child) {
+            color: #5f6368;
+        }
+
+        .todo-title.completed-title {
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -96,10 +108,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="todo : ${todos}"
-                    th:classappend="${todo.currentUser == '母' or todo.currentUser == 'mom'} ? ' todo-row-mom' :
+                    th:classappend="(${todo.currentUser == '母' or todo.currentUser == 'mom'} ? ' todo-row-mom' :
                                     (${todo.currentUser == '父' or todo.currentUser == 'dad'} ? ' todo-row-dad' :
                                     (${todo.currentUser == '僕' or todo.currentUser == 'me'} ? ' todo-row-me' :
-                                    (${todo.currentUser == '姉' or todo.currentUser == 'sis' or todo.currentUser == '娱'} ? ' todo-row-sis' : '')))">
+                                    (${todo.currentUser == '姉' or todo.currentUser == 'sis' or todo.currentUser == '娱'} ? ' todo-row-sis' : ''))))
+                                    + (${todo.completed} ? ' completed-row' : '')">
                     <td class="text-center owner-cell" th:switch="${todo.currentUser}">
                         <span th:case="'mom'">&#27597;</span>
                         <span th:case="'dad'">&#29238;</span>
@@ -109,7 +122,8 @@
                         <span th:case="*" th:text="${todo.currentUser}">&#27597;</span>
                     </td>
                     <td>
-                        <span th:classappend="${todo.completed} ? 'text-decoration-line-through text-muted' : ''"
+                        <span class="todo-title"
+                              th:classappend="${todo.completed} ? ' completed-title' : ''"
                               th:text="${todo.title}">Sample todo</span>
                     </td>
                     <td th:text="${todo.completed} ? '&#12399;&#12356;' : '&#12414;&#12384;'">&#12414;&#12384;</td>
