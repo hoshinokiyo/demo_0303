@@ -30,9 +30,9 @@ public class TodoController {
     public String list(Model model, HttpSession session) {
         String currentUser = (String) session.getAttribute("currentUser");
         if (currentUser == null || currentUser.isBlank()) {
-            return "todo/select-user";
+            return "redirect:/todo/select-user";
         }
-        List<Todo> todoList = todoService.findAllByCurrentUser(currentUser);
+        List<Todo> todoList = todoService.findAll();
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("todos", todoList);
         return "todo/list";
@@ -51,7 +51,8 @@ public class TodoController {
     }
 
     @GetMapping("/select-user")
-    public String selectUserPage() {
+    public String selectUserPage(HttpSession session) {
+        session.removeAttribute("currentUser");
         return "todo/select-user";
     }
 
