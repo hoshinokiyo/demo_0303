@@ -8,20 +8,25 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .todo-row-mom > td {
-            background-color: #fce4f3 !important;
+            background-color: #ffdff1 !important;
         }
 
         .todo-row-dad > td {
-            background-color: #e6f2ff !important;
+            background-color: #ddf1ff !important;
         }
 
         .todo-row-me > td {
-            background-color: #fff8cc !important;
+            background-color: #fff6b8 !important;
             color: #111111 !important;
         }
 
         .todo-row-sis > td {
-            background-color: #f1e6ff !important;
+            background-color: #efe2ff !important;
+            color: #111111 !important;
+        }
+
+        .todo-row-sis > td:first-child {
+            border-left: 4px solid #b58cff;
         }
 
         .owner-cell {
@@ -99,8 +104,8 @@
                         <span th:case="'mom'">&#27597;</span>
                         <span th:case="'dad'">&#29238;</span>
                         <span th:case="'me'">&#20693;</span>
-                        <span th:case="'sis'">&#22985;</span>
-                        <span th:case="'&#23089;'">&#22985;</span>
+                        <span th:case="'sis'">&#22985;&#9825;</span>
+                        <span th:case="'&#23089;'">&#22985;&#9825;</span>
                         <span th:case="*" th:text="${todo.currentUser}">&#27597;</span>
                     </td>
                     <td>
