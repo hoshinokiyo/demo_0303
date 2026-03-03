@@ -32,6 +32,19 @@ public class TodoService {
         return todoMapper.insert(todo);
     }
 
+    public int update(Long id, String title) {
+        Todo existing = todoMapper.findById(id);
+        if (existing == null) {
+            return 0;
+        }
+        Todo todo = Todo.builder()
+                .id(id)
+                .title(title)
+                .completed(existing.getCompleted())
+                .build();
+        return todoMapper.update(todo);
+    }
+
     public int deleteById(Long id) {
         return todoMapper.deleteById(id);
     }

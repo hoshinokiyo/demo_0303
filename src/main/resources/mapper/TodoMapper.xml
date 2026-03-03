@@ -21,6 +21,13 @@
         VALUES (#{title}, #{completed})
     </insert>
 
+    <update id="update" parameterType="Todo">
+        UPDATE todos
+        SET title = #{title},
+            completed = #{completed}
+        WHERE id = #{id}
+    </update>
+
     <delete id="deleteById" parameterType="long">
         DELETE FROM todos
         WHERE id = #{id}
