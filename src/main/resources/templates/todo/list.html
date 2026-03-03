@@ -21,16 +21,16 @@
                 <tr>
                     <th scope="col" class="text-center" style="width: 80px;">ID</th>
                     <th scope="col">Title</th>
-                    <th scope="col" style="width: 160px;">Status</th>
+                    <th scope="col" style="width: 160px;">Completed</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="todo : ${todoList}">
+                <tr th:each="todo : ${todos}">
                     <td class="text-center" th:text="${todo.id}">1</td>
                     <td th:text="${todo.title}">Sample todo</td>
-                    <td th:text="${todo.status}">TODO</td>
+                    <td th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
                 </tr>
-                <tr th:if="${#lists.isEmpty(todoList)}">
+                <tr th:if="${#lists.isEmpty(todos)}">
                     <td colspan="3" class="text-center text-muted py-4">No todos found</td>
                 </tr>
                 </tbody>
