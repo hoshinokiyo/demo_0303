@@ -9,7 +9,10 @@
 </head>
 <body class="bg-light">
 <div class="container py-4" style="max-width: 720px;">
-    <h1 class="h3 mb-4">&#20104;&#23450;&#12398;&#30331;&#37682;</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">&#20104;&#23450;&#12398;&#30331;&#37682;</h1>
+        <a th:if="${owner == 'mom'}" th:href="@{/admin}" class="btn btn-outline-dark btn-sm">&#31649;&#29702;&#32773;&#12506;&#12540;&#12472;&#12408;</a>
+    </div>
 
     <div class="card shadow-sm">
         <div class="card-body">

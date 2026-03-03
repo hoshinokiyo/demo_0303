@@ -75,6 +75,7 @@ public class TodoController {
             return "redirect:/todo";
         }
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("owner", ownerNameToCode(currentUser));
         return "todo/form";
     }
 
