@@ -27,9 +27,12 @@ public class TodoController {
     }
 
     @GetMapping
-    public String list(Model model) {
+    public String list(Model model, HttpSession session) {
         List<Todo> todoList = todoService.findAll();
+        String currentUser = (String) session.getAttribute("currentUser");
         model.addAttribute("todos", todoList);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentUserCode", ownerNameToCode(currentUser));
         return "todo/list";
     }
 
@@ -138,6 +141,19 @@ public class TodoController {
             case "dad", "\u7236" -> "\u7236";
             case "me", "\u50d5" -> "\u50d5";
             case "sis", "\u59c9" -> "\u59c9";
+            default -> null;
+        };
+    }
+
+    private String ownerNameToCode(String ownerName) {
+        if (ownerName == null || ownerName.isBlank()) {
+            return null;
+        }
+        return switch (ownerName) {
+            case "mom", "\u6bcd" -> "mom";
+            case "dad", "\u7236" -> "dad";
+            case "me", "\u50d5" -> "me";
+            case "sis", "\u59c9" -> "sis";
             default -> null;
         };
     }

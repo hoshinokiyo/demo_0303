@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&#31649;&#29702;&#32773;&#12506;&#12540;&#12472;</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show auto-dismiss" role="alert">
+        <span th:text="${errorMessage}">&#20837;&#12428;&#12394;&#12356;&#12424;&#65281;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="h4 mb-3">&#31649;&#29702;&#32773;&#12506;&#12540;&#12472;</h1>
+            <p class="text-muted mb-4">&#31649;&#29702;&#32773;&#27231;&#33021;&#12398;&#28310;&#20633;&#30011;&#38754;&#12391;&#12377;</p>
+            <div class="d-flex gap-2 flex-wrap">
+                <a th:href="@{/admin/password}" class="btn btn-outline-primary">&#21512;&#35328;&#33865;&#12434;&#31649;&#29702;</a>
+                <a th:href="@{/admin/approve}" class="btn btn-primary">&#25215;&#35469;&#12506;&#12540;&#12472;&#12408;</a>
+                <a th:href="@{/todo}" class="btn btn-outline-secondary">&#19968;&#35239;&#12408;&#25147;&#12427;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script>
+    setTimeout(function () {
+        document.querySelectorAll('.auto-dismiss').forEach(function (alertEl) {
+            bootstrap.Alert.getOrCreateInstance(alertEl).close();
+        });
+    }, 3000);
+</script>
+</body>
+</html>
