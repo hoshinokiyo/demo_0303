@@ -27,13 +27,8 @@ public class TodoController {
     }
 
     @GetMapping
-    public String list(Model model, HttpSession session) {
-        String currentUser = (String) session.getAttribute("currentUser");
-        if (currentUser == null || currentUser.isBlank()) {
-            return "redirect:/todo/select-user";
-        }
+    public String list(Model model) {
         List<Todo> todoList = todoService.findAll();
-        model.addAttribute("currentUser", currentUser);
         model.addAttribute("todos", todoList);
         return "todo/list";
     }
@@ -63,11 +58,17 @@ public class TodoController {
     }
 
     @GetMapping("/new")
-    public String newTodo(HttpSession session) {
+    public String newTodo(@RequestParam(value = "owner", required = false) String owner,
+                          HttpSession session,
+                          Model model) {
+        if (owner != null && !owner.isBlank()) {
+            session.setAttribute("currentUser", owner);
+        }
         String currentUser = (String) session.getAttribute("currentUser");
         if (currentUser == null || currentUser.isBlank()) {
             return "redirect:/todo";
         }
+        model.addAttribute("currentUser", currentUser);
         return "todo/form";
     }
 

@@ -20,15 +20,33 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-            <h1 class="h3 mb-1">ToDo List</h1>
-            <div class="border rounded px-3 py-2 bg-white">
-                <div class="small text-muted">&#12356;&#12414;&#12398;&#12402;&#12392;</div>
-                <div class="fw-semibold" th:text="${currentUser}">&#27597;</div>
-            </div>
+            <h1 class="h3 mb-1">&#12363;&#12382;&#12367;&#12398;ToDo&#12522;&#12473;&#12488;</h1>
+            <p class="text-muted mb-0">&#12415;&#12435;&#12394;&#12398;&#12424;&#12390;&#12356;&#12434;&#12371;&#12371;&#12391;&#35211;&#12425;&#12428;&#12414;&#12377;&#12290;</p>
         </div>
-        <div class="d-flex gap-2">
-            <a th:href="@{/todo/select-user}" class="btn btn-outline-secondary">&#12518;&#12540;&#12470;&#12540;&#20999;&#12426;&#26367;&#12360;</a>
-            <a th:href="@{/todo/new}" class="btn btn-primary">&#26032;&#35215;&#30331;&#37682;</a>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+        <div class="card-body">
+            <h2 class="h6 mb-3">&#12384;&#12428;&#12398;&#12424;&#12390;&#12356;&#12434;&#12356;&#12428;&#12427;&#65311;</h2>
+            <form th:action="@{/todo/new}" method="get" class="d-flex flex-wrap align-items-center gap-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerMother" value="&#27597;" required>
+                    <label class="form-check-label" for="ownerMother">&#27597;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerFather" value="&#29238;">
+                    <label class="form-check-label" for="ownerFather">&#29238;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerMe" value="&#20693;">
+                    <label class="form-check-label" for="ownerMe">&#20693;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="owner" id="ownerSister" value="&#23089;">
+                    <label class="form-check-label" for="ownerSister">&#23089;</label>
+                </div>
+                <button type="submit" class="btn btn-primary">&#12424;&#12390;&#12356;&#12434;&#12356;&#12428;&#12427;</button>
+            </form>
         </div>
     </div>
 
@@ -45,33 +63,32 @@
             <table class="table table-striped table-hover mb-0">
                 <thead class="table-dark">
                 <tr>
-                    <th scope="col" class="text-center" style="width: 80px;">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col" style="width: 160px;">Completed</th>
-                    <th scope="col" class="text-center" style="width: 180px;">Action</th>
+                    <th scope="col" class="text-center" style="width: 120px;">&#12383;&#12435;&#12392;&#12358;</th>
+                    <th scope="col">&#12424;&#12390;&#12356;</th>
+                    <th scope="col" style="width: 160px;">&#12391;&#12365;&#12383;&#65311;</th>
+                    <th scope="col" class="text-center" style="width: 220px;">&#12381;&#12358;&#12373;</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="todo : ${todos}">
-                    <td class="text-center" th:text="${todo.id}">1</td>
+                    <td class="text-center" th:text="${todo.currentUser}">&#27597;</td>
                     <td>
                         <span th:classappend="${todo.completed} ? 'text-decoration-line-through text-muted' : ''"
                               th:text="${todo.title}">Sample todo</span>
-                        <span class="badge text-bg-light border ms-2" th:text="${todo.currentUser}">母</span>
                     </td>
-                    <td th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
+                    <td th:text="${todo.completed} ? '&#12399;&#12356;' : '&#12414;&#12384;'">&#12414;&#12384;</td>
                     <td class="text-center">
                         <div class="d-flex justify-content-center gap-2">
                             <form th:action="@{/todo/{id}/toggle(id=${todo.id})}" method="post" class="m-0">
                                 <button type="submit" class="btn btn-outline-success btn-sm"
-                                        th:text="${todo.completed} ? '&#26410;&#23436;&#20102;&#12395;&#25147;&#12377;' : '&#23436;&#20102;&#12395;&#12377;&#12427;'">
-                                    &#23436;&#20102;&#12395;&#12377;&#12427;
+                                        th:text="${todo.completed} ? '&#12414;&#12384;&#12395;&#12418;&#12393;&#12377;' : '&#12391;&#12365;&#12383;'">
+                                    &#12391;&#12365;&#12383;
                                 </button>
                             </form>
-                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#32232;&#38598;</a>
+                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#12363;&#12360;&#12427;</a>
                             <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="m-0"
-                                  onsubmit="return confirm('&#26412;&#24403;&#12395;&#21066;&#38500;&#12375;&#12414;&#12377;&#12363;&#65311;');">
-                                <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
+                                  onsubmit="return confirm('&#12411;&#12435;&#12392;&#12358;&#12395;&#12420;&#12417;&#12427;&#65311;');">
+                                <button type="submit" class="btn btn-danger btn-sm">&#12420;&#12417;&#12427;</button>
                             </form>
                         </div>
                     </td>
